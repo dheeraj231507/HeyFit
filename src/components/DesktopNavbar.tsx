@@ -1,9 +1,16 @@
-import { BellIcon, HomeIcon, UserIcon } from "lucide-react";
+import {
+  BellIcon,
+  HomeIcon,
+  UserIcon,
+  CalendarIcon,
+  ChevronDownIcon,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { SignInButton, UserButton } from "@clerk/nextjs";
 import ModeToggle from "./ModeToggle";
 import { currentUser } from "@clerk/nextjs/server";
+import Events from "./Events";
 
 async function DesktopNavbar() {
   const user = await currentUser();
@@ -27,10 +34,14 @@ async function DesktopNavbar() {
               <span className="hidden lg:inline">Notifications</span>
             </Link>
           </Button>
+          {/* Events Dropdown */}
+          <Events />
+
           <Button variant="ghost" className="flex items-center gap-2" asChild>
             <Link
               href={`/profile/${
-                user.username ?? user.emailAddresses[0].emailAddress.split("@")[0]
+                user.username ??
+                user.emailAddresses[0].emailAddress.split("@")[0]
               }`}
             >
               <UserIcon className="w-4 h-4" />

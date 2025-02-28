@@ -121,3 +121,22 @@ enum NotificationType {
   COMMENT 
   FOLLOW   
 }
+
+model Event {
+  id        String   @id @default(cuid())
+  name      String
+  location  String
+  date      DateTime
+  time      String
+  category  String
+  contact   String
+  players   Int
+
+  // Relations
+  organizerId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([organizerId])
+}
